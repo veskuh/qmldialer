@@ -1,0 +1,49 @@
+#! /usr/bin/env python
+#
+# Copyright (c) 2011, Tom Swindell.
+#
+# This program is licensed under the terms and conditions of the
+# Apache License, version 2.0.  The full text of the Apache License is at
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+
+import os, sys
+
+def display_usage():
+  sys.stderr.write("Usage: " + sys.argv[0] + " <get|set> <preset (1-8)> [value]\n\n")
+
+if __name__ == '__main__':
+  if len(sys.argv) < 2:
+    sys.stderr.write("You must specify a command!\n")
+    display_usage()
+    sys.exit(1)
+
+  if len(sys.argv) < 3:
+    sys.stderr.write("You must specify a prefix!\n")
+    display_usage()
+    sys.exit(1)
+
+  command = sys.argv[1]
+  preset  = int(sys.argv[2])
+
+  if preset < 1 or preset > 8:
+    sys.stderr.write("Preset has to be between 1 and 8!\n")
+    display_usage()
+    sys.exit(1)
+
+  if command == 'get':
+    os.system('gconftool-2 -g /apps/dialer/speeddial/' + str(preset))
+
+  elif command == 'set':
+    if len(sys.argv) < 4:
+      sys.stderr.write("You must supply a value for preset!\n")
+      display_usage()
+      sys.exit(1)
+
+    os.system('gconftool-2 -t string -s /apps/dialer/speeddial/' + str(preset) + ' ' + sys.argv[3])
+
+  else:
+    sys.stderr.write("Unrecognised command: " + command + "\n")
+    display_usage()
+    sys.exit(1)
+

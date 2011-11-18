@@ -1,0 +1,56 @@
+Name: meego-handset-dialer
+Summary: MeeGo Touch Framework based Voice Call Application
+Version: legacy
+Release: 2
+Group: System/GUI/Other
+License: Apache License, Version 2.0
+URL: http://www.meego.com
+Sources:
+    - "%{name}-%{version}.tar.bz2"
+Description: MeeGo Touch Framework based Dialer Application
+Requires:
+    - ofono
+    - voicecallhistory
+    - meego-handset-dialer-branding
+    - meego-handset-sound-theme  
+PkgBR:
+    - libseaside-devel >= 0.0.35
+PkgConfigBR:
+    - QtOpenGL
+    - QtContacts >= 1.0.2
+    - QtMultimediaKit
+    - QtDeclarative
+    - meegotouch
+    - qttracker
+    - meegobluetooth
+    - libresourceqt1
+    - libpulse
+    - libpulse-mainloop-glib
+Provides:
+    - dialer
+UseAsNeeded: false 
+Builder: qmake
+Files:
+- "%{_bindir}/dialer"
+- "%{_bindir}/dialer-keepalive.sh"
+- "%{_datadir}/dbus-1/services/dialer.service"
+- "%{_datadir}/applications/dialer.desktop"
+- "%{_datadir}/themes/base/meegotouch/dialer"
+- "%{_datadir}/pixmaps/icons-Applications-dialer.svg"
+- "%{_datadir}/l10n/meegotouch/dialer.qm"
+- "%{_datadir}/meego-handset-dialer/qml"
+- "%{_datadir}/meego-handset-dialer/AUTHORS"
+- "%{_datadir}/meego-handset-dialer/ChangeLog"
+- "%{_datadir}/meego-handset-dialer/LICENSE"
+- "%{_datadir}/meego-handset-dialer/README"
+- "%{_datadir}/meego-handset-dialer/TODO"
+- "%config %{_sysconfdir}/xdg/autostart/dialer-prestart.desktop"
+
+SubPackages:
+    - Name: tools
+      Group: Development/Tools
+      Summary: Tools for meego-handset-dialer
+      Description: |
+         Misc command-line tools for working with meego-handset-dialer
+      Files:
+      - "%{_datadir}/meego-handset-dialer/tools"

@@ -1,0 +1,173 @@
+Introduction
+============
+
+The follow list are features still to be implimented in the dialer application.
+
+Each entry has the fields:
+- <brief description>
+  Details:    As much info as is needed to understand the purpose, complexity,
+              impact and dependancies of the feature.  The goal being to allow
+              those interested in helping to determine if they have the
+              knowledge and time to do so.
+  Priority:   An indicator of the project perceived urgency for implementation.
+              Values are: Low, Medium, High
+  Complexity: A estimate of the difficulty to implement or potential impact to
+              the rest of the project.
+              Values are: C1, C2, C4 and C8 (See "What is Complexity?" below)
+  BMC#:       Bugzilla id from bugs.meego.com (optional, but recomended)
+  Owner:      Who has accpted (or been assigned to) the task
+
+
+What is Complexity?
+==================
+
+First, I am borrowing this from the Ofono project, so if you are familiar
+with how they use it, it is the same here.
+
+Complexity scale: C1, C2, C4 and C8.
+
+The complexity scale is exponential, with complexity 1 being the lowest
+complexity.  Complexity is a function of both task 'complexity' and task
+'scope'.
+
+The general rule of thumb is that a complexity 1 task should take 1-2 weeks
+for a person very familiar with oFono codebase.  Higher complexity tasks
+require more time and have higher uncertainty.
+
+Higher complexity tasks should be refined into several lower complexity tasks
+once the task is better understood.
+
+
+
+===============================================================================
+TODO:
+
+Dialer Features
+---------------
+
+- Add event feedback (haptic, audio, other)
+  Details:      
+  Priority:     Low
+  Complexity:   C1
+  BMC#:         BMC#2661
+  Owner:        Shane Bryan <shane.bryan@linux.intel.com>
+
+- Add Advice Of Charge (Cost) to all call views
+  Details:      
+  Priority:     Medium
+  Complexity:   C1
+  BMC#:         BMC#2658
+  Owner:        Shane Bryan <shane.bryan@linux.intel.com>
+
+- Multi-party call capabilities
+  Details:      
+  Priority:     High
+  Complexity:   C2
+  BMC#:         BMC#550, BMC#2806
+  Owner:        Shane Bryan <shane.bryan@linux.intel.com>
+
+- Volume up/down and Mute
+  Details:      
+                NOTE: Depends on Audio routing integration
+  Priority:     High
+  Complexity:   C2
+  BMC#:         BMC#2809
+  Owner:        
+
+- User Determined User Busy
+  Details:      
+  Priority:     Medium
+  Complexity:   C1
+  BMC#:         BMC#2794
+  Owner:        
+
+- Explicit Call Transfer
+  Details:      
+  Priority:     Medium
+  Complexity:   C1
+  BMC#:         BMC#2803
+  Owner:        
+
+- Private Conversation during multi-party call
+  Details:      
+  Priority:     Low
+  Complexity:   C4
+  BMC#:         BMC#2807
+  Owner:        
+
+- Split Multi-party call
+  Details:      
+  Priority:     High
+  Complexity:   C2
+  BMC#:         BMC#2808
+  Owner:        
+
+- Auto redial / Call Completion to Busy Subscriber
+  Details:      
+  Priority:     Medium
+  Complexity:   C2
+  BMC#:         BMC#2804
+  Owner:        
+
+- Support of Emergency call w/ and w/o SIM
+  Details:      
+  Priority:     Medium
+  Complexity:   C4
+  BMC#:         
+  Owner:        
+
+- Integrated hands-free
+  Details:      
+  Priority:     Low
+  Complexity:   
+  BMC#:         
+  Owner:        
+
+System Interaction tasks
+------------------------
+
+- Ringtones associated per contact
+  Details:      Should be able to set/get a ringtone for each contact.  This
+                is mostly a requirement on libseaside, but dialer will need to
+                determine if, for an incoming call, the contact associated with
+                the lineid has a ringtone preference set, and use it instead of
+                and defaults if so
+  Priority:     Medium
+  Complexity:   C4
+  BMC#:         BMC#2661
+  Owner:        
+
+- Call settings UI
+  Details:      A settings plugin for letting the user see (and change
+                when allowed) the various dialer and ofono settings
+  Priority:     High
+  Complexity:   C2
+  BMC#:         
+  Owner:        
+
+
+Misc other tasks
+----------------
+
+- Migrate to using libofono-qt
+  Details:      With the maturing of libofono-qt, we need to standardize
+                upon it's API rather than our own local introspected XML
+                interface proxies.
+  Priority:     High
+  Complexity:   C1
+  BMC#:         BMC#18701
+  Owner:        Shane Bryan <shane.bryan@linux.intel.com>
+
+- Refactor debug output
+  Details:      The debugging output of dialer is crude, simplistic and
+                prone to inconsistent use by different contributors.
+                We need a filterable and formalized set of debugging
+                functions/macros that make this simple to use as both
+                a developer writing new code, and dev/QA/user trying to
+                root cause an issue or understand how dialer works
+  Priority:     High
+  Complexity:   C1
+  BMC#:         
+  Owner:        
+
+

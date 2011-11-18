@@ -1,0 +1,59 @@
+#! /usr/bin/env python
+#
+# Copyright (c) 2011, Tom Swindell.
+#
+# This program is licensed under the terms and conditions of the
+# Apache License, version 2.0.  The full text of the Apache License is at
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+
+import os, sys, dbus
+
+bus     = dbus.SystemBus()
+manager = dbus.Interface(bus.get_object('org.ofono', '/'), 'org.ofono.Manager')
+modems  = manager.GetModems()
+iface   = dbus.Interface(bus.get_object('org.ofono', modems[0][0].path), 'org.ofono.MessageWaiting')
+
+def display_usage():
+  sys.stderr.write("Usage: " + sys.argv[0] + " <gconf|ofono> <get|set> [number]\n")
+
+if __name__ == '__main__':
+  if len(sys.argv) < 3:
+    display_usage()
+    sys.exit(1)
+
+  backend = sys.argv[1]
+  command = sys.argv[2]
+
+  print "backend: " + backend
+  print "command: " + command
+
+  if backend != 'gconf' or backend != 'ofono':
+    sys.stderr.write("Unknown backend: " + backend + "\n")
+    display_usage()
+    sys.exit(1)
+
+  if command == 'get':
+    if backend == 'gconf':
+      os.system('gconftool-2 -g /apps/dialer/voicemail/number')
+    else:
+      print iface.VoicemailMailboxNumber()
+
+  elif command == 'set':
+    value = sys.argv[3]
+
+    if len(sys.argv) < 4:
+      sys.stderr.write("You must supply a value to set!\n")
+      display_usage()
+      sys.exit(1)
+
+    if backend == 'gconf':
+      os.system('gconftool-2 -t string -s /apps/dialer/voicemail/number ' + value)
+    else:
+      iface.SetProperty('VoicemailMailboxNumber', value)
+
+  else:
+    sys.stderr.write("Unrecognised command: " + command + "\n")
+    display_usage()
+    exit(1)
+

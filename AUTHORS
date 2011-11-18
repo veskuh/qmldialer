@@ -1,0 +1,34 @@
+Original Author:
+Shane Bryan <shane.bryan@linux.intel.com>
+
+Overall Maintainers:
+Shane Bryan <shane.bryan@linux.intel.com>
+
+Contributors:
+Tom Swindell <t.swindell@rubyx.co.uk>
+ - QML Port
+
+Kevron Rees <kevronx_m_rees@linux.intel.com>
+ - DBus service adaptor for remote calls
+
+Arun Ravindran <ext-arun.1.ravindran@nokia.com>
+ - Misc fixes
+
+Nick Woo <nicholas.woo@intel.com>
+ - Misc fixes, updated README
+
+Vladimir Zapolskiy <vladimir.zapolskiy@nokia.com>
+ - Initial Resource Policy Manager integration
+
+Sami Sirkiä <sami.sirkia@cybercom.com>
+ - Misc Policy related changes
+
+Kalle Lampila <kalle.lampila@cybercom.com>
+ - Ringtone fixes
+
+Jouni Peltonen <jouni.peltonen@cybercom.com>
+ - Ringtone fixes
+
+Antoine Reversat <a.reversat@gmail.com>
+ - CNAP Handling and CallItem presentation code rework
+

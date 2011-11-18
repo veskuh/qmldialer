@@ -1,0 +1,144 @@
+dialer
+Copyright (C) 2009, Intel Corporation, 2008, 2009.
+
+dialer is a simple Voice Call Dialer/Manager based on Qt 4.7 and MTF 0.20+
+It depends on:
+ - Following libraries to compile
+        qdbusxml2cpp (QtDBus XML Compiler)
+        libqtopengl
+        libmeegotouch
+        libmeegobluetooth
+        qt-mobility
+        qtcontact
+        libseaside
+        libqt-devel
+        libresourceqt1
+        libpulse
+        libpulse-mainloop-glib
+
+        As an example use zypper to download and install these in a MeeGo
+        based development system:
+                $ sudo zypper in -t pattern meego-handset-desktop-devel
+                $ sudo zypper si -d meego-handset-dialer
+ - Runtime requirements
+        oFono for telephony services
+        callhistory ofono plugin for call history tracking
+        seaside for contacts data access
+ - Optional packages
+        phonesim
+
+
+-----------------------------------------------------------------------------
+ Build
+-----------------------------------------------------------------------------
+$ qmake
+$ make
+
+-----------------------------------------------------------------------------
+ Install
+-----------------------------------------------------------------------------
+$ sudo make install
+
+-----------------------------------------------------------------------------
+ Running
+-----------------------------------------------------------------------------
+$ dialer
+
+if you are running dialer in prestart mode, i.e. /usr/bin/dialer -prestart
+then you must add an entry into the /etc/prestart/nokia.conf file to allow
+lazyShutDown of the dialer application. Failure to do so results in applifed
+killing the dialer process on shutdown...
+
+Line to add to nokia.conf:
+
+<allow_lazy_shutdown binary_path="/usr/bin/dialer"/>
+
+In the /usr/share/dbus-1/services/dialer.service file -prestart must be added
+Exec=/usr/bin/dialer -prestart
+
+In the dialer.desktop file the /usr/share/applications/dialer.desktop add the
+following lines:
+
+OnlyShowIn=X-DUI;X-MeeGo;X-MeeGoTouch;
+X-Desktop-File-Install-Version=0.16
+X-Osso-Service=com.meego.dialer
+
+-----------------------------------------------------------------------------
+ Selecting which UI to use, MTF or QML
+-----------------------------------------------------------------------------
+The UI is now a runtime (and compile time) selectible option:
+
+   QML UI:
+     $ /usr/bin/dialer -ux meego-ux-components
+
+   MTF UI:
+     $ /usr/bin/dialer -ux meegotouch
+
+   The default will remain "meegotouch" (MTF) for now, until we draw
+   closer to Feature equivalence
+
+The UI can also be specified by setting the "/apps/dialer/ux" gconf
+key to the same string values as used on the commandline options:
+
+   QML UI:
+     $ gconftool-2 -s -t string /app/dialer/ux meego-ux-components
+   MTF UI:
+     $ gconftool-2 -s -t string /app/dialer/ux meegotouch
+
+-----------------------------------------------------------------------------
+ Selecting which running mode, with HFP or not
+-----------------------------------------------------------------------------
+Dialer added support to run in different modes as a runtime selectible option,
+the argument is a string of modes delimited by comma, currently only hfp is
+supported:
+
+   HFP mode:
+     $ /usr/bin/dialer -mode hfp
+
+   (possible scenario)
+   HFP and handset mode:
+     $ /usr/bin/dialer -mode hfp,handset
+
+The UI can also be specified by setting the "/apps/dialer/mode" gconf
+key to the same string list as used on the commandline options:
+
+   HFP mode:
+     $ gconftool-2 -s -t list --list-type string /apps/dialer/mode "[hfp]"
+   (possible scenario)
+   HFP and handset mode:
+     $ gconftool-2 -s -t list --list-type string \
+     /apps/dialer/mode "[hfp,handset]"
+
+If the gconf mode key already have any existing values, the command line
+argument will not overwrite them, instead it will append any additional new
+modes specified to the list of running modes.  If the gconf key changes its
+value at runtime after the dialer has started, the running modes will reset
+to the values specified in the gconf key, ignoring any command line
+selections.
+
+The support for preserving command line mode selection after gconf value
+changes will need to be added later.
+
+-----------------------------------------------------------------------------
+ Configure phone simulator
+-----------------------------------------------------------------------------
+If the GUI for the dialer doesn't show and you don't have a modem recognized
+by and working with oFono, execute the following steps to configure the
+phone simulator.
+As root
+# vi /etc/ofono/phonesim.conf # Un-comment the following lines in
+        [phonesim]
+        Address=127.0.0.1
+        Port=12345
+# killall ofonod
+# killall phonesim
+# ofonod
+As normal user
+$ startphonesim
+
+-----------------------------------------------------------------------------
+ Troubleshotting
+-----------------------------------------------------------------------------
+If build errors are encountered during the early part of the initial make
+process, execute the following before retrying the build at the qmake step.
+$ make distclean

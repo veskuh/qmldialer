@@ -1,0 +1,254 @@
+Changes in legacy
+
+aa6c Fixed issue in .pro
+d089 Added icon to projects.pro
+662d Removed theme from projects.pro
+277e Removed all MTF dependencies.
+a88c Revert "Removal of MTF UI and associated code. This doesn't remove the dependency on MTF but is the first step in that direction."
+62ed Removal of MTF UI and associated code. This doesn't remove the dependency on MTF but is the first step in that direction.
+fc21 Switch to model/view for managing call items. Allow a call to be made as long as there is only one active call, or all the active calls are part of the active multiparty call. Unlimited calls can be made and combined with the model/view approach. Display the numpad if hidden when the last call is disconnected. Fixed problem with hold button image changing incorrectly when view is scrolled. Fixed problem with active call sometimes getting disconnected when trying to hangup the dialing call. Use two separate call views for dialing and incoming and create/destroy them appropriately using a Loader.
+7154 Added multi-call support. Added in-call buttons to mute, toggle speaker/handset, hold, and merge calls. Added DTMF support.
+1aeb Switch to model/view for managing call items. Allow a call to be made as long as there is only one active call, or all the active calls are part of the active multiparty call. Unlimited calls can be made and combined with the model/view approach. Display the numpad if hidden when the last call is disconnected. Fixed problem with hold button image changing incorrectly when view is scrolled. Fixed problem with active call sometimes getting disconnected when trying to hangup the dialing call. Use two separate call views for dialing and incoming and create/destroy them appropriately using a Loader.
+4ba0 Fix crash when incoming call is diverted.
+76f7 Changes to the CallItemViewLarge layout. No longer try to resize calls on the fly since the new compact version fits nicely. Resolved issue with incoming call staying visible after caller hangs up. Sync mute and speaker/handset info across calls so that buttons can stay in sync. Added back incoming call buttons.
+a057 Added multi-call support. Added in-call buttons to mute, toggle speaker/handset, hold, and merge calls. Added DTMF support.
+906e Fixed QMLDialer to warn modem power status
+ed2d Initial hfp mode port to dialer
+2de9 Added setter methods and signals for manager proxy
+be81 Added syncing with  modem isPowered property
+9e0e Added hfp routing logic to pacontrol class
+1eb0 Fixed MACRO to reference new DialerContext class
+f05e Added:   modeChanged() signal in DialerContext
+c56d Changed: Runtime mode handling moved into DialerContext
+e58f Added: New DialerContext class
+106b Fixed:   segfault on accessing CallItem properties
+7520 Changed: Removed unused interfaces from oFono XML instrospection
+5da6 Fixed:   Signal names connected to and define default modemPath
+2555 Changed: CallManager now based on ofono-qt
+8704 Fixed:   BMC# 19727 - Call duration in history incorrect
+b654 Removed: The DebugPage, as it has bitrotted and is MTF based
+a1d8 Changed: Default UX will now be QML
+e4fa Fixed:   BMC#16055 - Added dbus integration for "call" interface with apps.
+78be Fixed:   BMC#8269 - Implemented hardware keyboard support in number entry field.
+b110 Fixed:   Mute (BMC#8326) and call duration (BMC#18873)
+693a Added:   Missing build requirements in README
+d46c Added pulseaudio build dependency in yaml
+5c4c Added: PulseAudio BT audio control class
+95cd Layout fixes for landscape mode
+6de7 CSS fixes for Landscape mode
+778d Added:   Instructions for mode support in README
+0fda Added:   gconf key to support HFP mode at runtime
+0364 - Fix for BMC#17858 - Issue with getContactByNumber() implementation.
+34dd - Fixed issue with call duration showing up as 'NaN' when making outgoing call.
+8166 Changed: Install docs, list qml dir specificly in .yaml
+2775 Fixed:   qml install dir, made tools subpackage files more specific
+ca51 Added:   tools subpackage to .yaml file
+7a04 - Implemented call duration indication.
+fa71 - Added tools/ directory for various handy command line scripts.   * speeddial - Get/Set gconf backed dialer speeddial presets.   * voicemail - Get/Set ofono (failover gconf) backed mailbox number.
+5036 - Modified QML source files to have consistant string quotation.   * Symbolic like strings are single quoted, icon names, states, etc.   * Any text being displayed to user is double quoted, logging as well.
+966f Added: Initial QML translations (BMC# 18644)
+2e66 Changed: Refactoring of MessageDialog, add VM GConf Key
+cf0e Added: Made deflect call button divert incoming to voicemail.
+c1ee Changed: Added debug refactor task in TODO file
+d236 Changed: Updated libofono-qt task in TODO file
+99e0 Changed: Seperate HistoryProxy from ManagerProxy sources
+4516 Changed: AUTHORS file, added Tom Swindell
+8271 Changed: Include qml dir when building translations
+19ff Implemented speed dial functionality with GConf backend (no front end UI for assigning yet).
+8341 Implemented ofono based voicemail mailbox handling.
+301a Fixed issue with UI locking in contact search QML function.
+6df9 Changed: TODO file - Updated ofono API task description and owner
+827b Changed: TODO file - Updated Call Settings UI task, needs new owner
+3e33 Changed: TODO file - Visual Voicemail task removed
+7592 Changed: TODO file - Play ringtones task completed
+8a3e Changed: TODO file - Audio Routing task completed
+02d0 Changed: Removed libseaside widget migration from TODO file
+
+Changes in 0.2.3
+
+5d23 Added:   Update "Version:" key in .yaml file from mksnapshot script
+b121 Updated: README file with details on UI selection options
+34f3 Changed: Default UX will be MTF for now
+d642 Merged:  Pulling "qml" branch into "master"
+10ab Added .yaml file for QML data dir packaging.
+cb9c Fixed issue with terminating outgoing call when remote not answering (BMC#17757).
+1264 Add callerid name support if present
+0228 Fixed:   BMC# 17841 - If dialer has not been launched then incoming
+abe5 Fixed:   BMC# 9282 - The title displayed in dialer are all with '!!'
+ccf4 Fixed:   BMC# 17602 - Incorrect call duration on the active call bar
+e0a1 Integrated history with contacts and applied some slight UX refinements to contacts page/list.
+c095 Implemented Favourites page.
+c0bc Implemented error reporting dialog component and support in UX.
+31be Added new CallContextDialog component and integrated into history and contacts pages. Updated contacts page to use QtMobility.contacts API.
+999c Removed Seaside root context property, which has been replaced with Qt Mobility contacts API usage.
+9700 Merged:  Syncing up "qml" branch with "master"
+ca6d Fixed:   BMC 17327 - Unable to end the hold conference call if still
+1f52 Modified HistoryTableModel to integrate with QML code.
+f61c * Fixed issue with QML files not showing up in Qt Creator. * Modified QML file installation strategy in qml.pro. * Implemented QML UX home button minimizing rather than closing.
+fe9b Added functionality to allow runtime selection of User eXperience.
+a814 Added:   Copy of the MeeGo OBS .yaml file
+6432 Changed: Removed dependence on XDG or applifed for restarting
+cbc2 Changed: Ringtone file existance handling and error reporting
+2418 Merged:  Syncing up "qml" branch with "master"
+5758 Added:   makedist now handles tree-ish id arguments
+5893 Added:   Compile time define to choose between QML and MTF user experiences.
+1318 Added:   Initial implementation of a QML based user experience.
+2105 Changed: Beginning of MTF removal/refactoring
+
+Changes in 0.2.2
+
+5a17 Fixed:   BMC# 17030,17118 - Keypad & Incoming call dialog issues
+7183 Fixed:   BMC# 16916 - No alert dialog for incoming calls
+6660 Fixed:   BMC# 16814 - Dialer fail to launch from UI...
+54e2 Added:   XDG autostart desktop file installation
+
+Changes in 0.2.1
+
+2e5e Fixed:   BMC# 2043 - call history information is not saved...
+5d99 Fixed:   Segfault during incoming call when keypad not yet displayed
+b762 Fixed:   BMC#1505 - Number entry not empty after establishing call
+baac Updated: TODO file - prestart is now functional
+04ec Changed: Default to using -prestart now
+
+Changes in 0.2.0
+
+dd79  Merged:  topic/headless (Fixes for BMC# 1977, 7074, 16436)
+0bf3  Updated: ChangeLog and common.pri to version 0.1.20
+d2ba  Fixed:   DialerKeypad should not be bound to CallManager
+f01f  Changed: Initialize our custom DBus types in DialerApplication
+96e94 Removed: ResourceProxy and HistoryProxy accessors from ManagerProxy
+8f46  Changed: Remove proxyAvail() signals (part of BMC#7074)
+1f4b  Merged:  master into topic/headless
+abeb  Changed: Make the genericPage methods activate and deactivate widgets...
+86f8  Changed: the way the dialer page uses callManager. This patch checks...
+74d1  Changed: Make setError() method public allowing other interfaces to...
+2d25  Added:   the proxyAvail() signal handling so graphical components can...
+85d4  Added:   signal handling for the proxyAvail() generated by the...
+70f8  Added:   a new signal for ManagerProxy to emit letting all clients...
+ee28  Added:   Dialer prestart for faster display. This gives dialer the...
+
+Changes in 0.1.20
+
+6a8a Changed: Namespace and code cleanups to complete fix for BMC# 14618
+2c72 Fixed:   BMC# 14618 - Can not end entire multiparty call by pressing...
+7f4c Fixed:   BMC# 8559 - Non-emergency call can be made without SIM card
+e5b5 Changed: Protect proxy sigletons, that object cannot make outside of...
+a4d2 Fixed:   BMC# 14225 - Ringtone audio is routed wrong sometimes
+6226 Fixed:   Memoryleak in resourceProxy
+d7e1 Fixed:   BMC# 14948 - The system time is displayed before the call is...
+
+Changes in 0.1.19
+
+85e2 Added:   Missing TRACE macro to new function
+0b62 Updated: AUTHORS file
+4872 Fixed:   For FEA#4419, remove wrong comment and whitespace cleanup
+1d9a Changed: For FEA#4419, free m_peopleItem object on object deletion
+1fd0 Added:   Add a dataChanged signal and use it to update the CallItem
+4341 Added:   For FEA#4419, Modify classes to use the CallItem::peopleItem()
+8ee6 Added:   For FEA#4419, Create a people item with the right info
+1961d Added:   For FEA#4419, Add name property where needed
+0834 Fixed:   BMC# 14321 - The whole dialer UI will move down ...
+e26f Added: audio resource acquire during the ringtone playing
+8ddd Fixed:   BMC# 13280 - Unable to mark text in Dialer application
+e2f0 Fixed:   BMC# 14206 - Dialer ringtone does not stop
+c7e0 Fixed:   BMC# 13292 - Ringtones are cut short
+
+Changes in 0.1.18
+
+81c8 Updated: AUTHORS file
+fbc9 Added:   Some useful Policy related debugging outputs
+1b63 Added: A simple notification dialog
+1f3c Changed: Workaround lack of ringtone stream name
+be1a Added: Additional policy signals and handlers
+84dd Changed: Allow creation of CallManager before ManagerProxy
+73bd Added: Handling of denied resource for incoming call
+717e Added: Basic policy awareness for non-multiparty calls
+ca6a Added: Initial version of resource proxy object.
+2292 Updated: AUTHORS file
+1a4d Changes to resolve BMC# 8079
+041d Changes to resolve BMC# 6809
+4f2f Update README to be more useful to new developers
+ca08 Removed: OnlyShowIn desktop visibility limitation
+39b1 Fixed: BMC#10848 - Invalid UI state for second MO call after first declined by MT
+927f Fix for issue BMC#9930
+1d1e callitemview:  MScalableImage::draw() api changed
+ecd0 Updated: AUTHORS file
+0973 Fixed: BMC#1505 - Number entry not empty after establishing call
+
+Changes in 0.1.17
+
+1e49 Fixed:   BMC#8736 - Unable to make calls from recent and people page
+56e6 Fixed:   BMC#9113 - Fails to connect to ofono due to API changes
+95a7 Initial changes needed to migrate to new oFono APIs (BMC#9113)
+0816 Make devel lib requirements more explicit at initial qmake invocation
+e41c Fixed:   BMC#8079 - The comma shouldn't be displayed in the name of the incoming call
+e3ad Fixed:   BMC#7659 - Contact's name is displayed as number while receiving a call
+eb05 Fixed:   BMC#8522 - No new voicemail count displayed in the top center of the status bar
+4d5b Fixed:   BMC#8322 - The initiated call can not be ended before accepting at the other end
+f81f Fixed:   BMC#2661 - Dialer application ringing tones
+64a5 Fixed:   BMC#6208 - Unable to received voice mail indicator
+8450 Fixed:   BMC#7536 - Tapping outside incoming call dialog causes invalid UI state
+
+Changes in 0.1.16
+
+2104 Fixed:   Can't make 2nd outgoing call, partial fix for BMC#3581
+82c0 Fixes BMC#3240 - Wrong text color on all keypad buttons
+98e6 Fixes: BMC#6807 - + and * keys should not trigger a speed call dialog
+aee8 Fixed: Keypad size and background (BMC#'s 5586, 6395)
+d66b Fixed: BMC#7183 - Call option button group is in wrong position
+4e9f Fixed:   Contact artifacts from recylcer in Me card
+8a1f Fixed:   m_audiosink button text spelling error
+bef3 Removed: Obsolete and unused code
+d21b Fixed:   Audio sink button state handling (BMC#'s 6737, 6738)
+9f0c added project dependencies to build against meegobluetooth
+ce82 added bluetooth headset/handsfree device detection and update the audiosink button appropriately
+e7da renamed spkr button to audiosink button
+8a01 fixed seg fault when ofono isn't running
+2701 Fixed:   BMC#6291 - Updated visual assets not being used
+
+Changes in 0.1.15
+
+7735... Fixed:   BMC#3978 - [L10N] Dialer needs to be translatable
+9bb8... Added:   Project infrastructure for translations
+
+Changes in 0.1.14
+
+96e9... Fixed:   Bug 3244 - Contact card views and lists do not match
+ccf9... Fixed:   Bug 5793 - Contact filtering never matches
+a5fb... Revert "Fixed:   BMC#5724 - libseaside Seaside::DataRole deprecated"
+f406... Fixed:   BMC#5724 - libseaside Seaside::DataRole deprecated
+
+Changes in 0.1.13
+
+b514... Fixed:  Make build require QtContacts
+c1f3... Fixed:  Bad source path for base theme icon install
+
+Changes in 0.1.12
+
+dd12... Changed: Project structure to support seperate tar files
+67b5... Added: Mode based styling to CallItem
+61a1... Fixed: BMC#s 432, 550, 2048, 2806, 3234, 3284
+e504... Temporarily disable building unused interface
+
+Changes in 0.1.11
+
+e3da... Fixed: Toolbar alignment and icons (BMC#4067)
+dd56... Updated: TODO file (BMC #548, #3393, #1507, #2811)
+16bf... Add DTMF tone sending when in call
+650e... Fixed incoming call remote action
+76b5... Fix initial keypad layout regression in last commit
+e51b... Fixed: Solved segfault on accept/reject (BMC#3472)
+b45b... Fixed: Made incoming call info visible (BMC#3393)
+6801... Fixed: Added missing call information (BMC#548)
+600b... Voicemail task completed
+da67... Updated to work with libseaside-0.0.26
+a243... Added Voicemail info to debug page
+f786... Make voicemail button use mailbox data
+a972... Add reference to VoicemailProxy into ManagerProxy class
+dae8... Add Voicemail (MessageWaiting) proxy class
+c165... Updated TODO list
+6ac4... Adding TODO file to begin tracking tasks
+55ab... Implement the SendTones method for DTMF work to follow
+ffab... Sync up introspection files with ofono 0.24 API
+
+
