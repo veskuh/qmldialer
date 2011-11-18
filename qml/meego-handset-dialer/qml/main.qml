@@ -32,11 +32,6 @@ Item
         id: contactModel
 
         autoUpdate: true
-
-        filter: DetailFilter {
-            detail: ContactDetail.PhoneNumber
-            field: PhoneNumber.Number
-        }
     }
 
     //model used by the callView on the DialPage

@@ -27,11 +27,6 @@ Page
         model: ContactModel {
             autoUpdate: true
 
-            filter: DetailFilter {
-                detail: ContactDetail.PhoneNumber
-                field: PhoneNumber.Number
-            }
-
             sortOrders: [
                 SortOrder {
                     detail: ContactDetail.Name
