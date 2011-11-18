@@ -93,14 +93,4 @@ private:
     Q_DISABLE_COPY(PeopleItem)
 };
 
-#include <mabstractcellcreator.h>
-#include <seasidelistitem.h>
-
-class PeopleItemCellCreator : public MAbstractCellCreator<SeasideListItem>
-{
-public:
-    PeopleItemCellCreator();
-    void updateCell(const QModelIndex& index, MWidget * cell) const;
-};
-
 #endif // PEOPLEITEM_H
