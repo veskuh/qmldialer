@@ -133,7 +133,7 @@ void QMLMainWindow::setupUi()
     d->mpage->setCentralWidget(d->widget);
     d->mpage->appear(this);
 
-    //this->show();
+    this->show();
 }
 
 void QMLMainWindow::show()
