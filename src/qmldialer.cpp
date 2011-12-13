@@ -293,6 +293,7 @@ void QMLDialer::onCallsChanged()
 void QMLDialer::onIncomingCall(CallItem *callitem)
 {
     TRACE
+    DialerApplication::instance()->setPrestarted(false);
 
     d->currentCall = new QMLCallItem(callitem, this);
     emit this->incomingCall();
