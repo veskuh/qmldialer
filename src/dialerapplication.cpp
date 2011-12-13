@@ -394,4 +394,5 @@ void DialerApplication::onCallsChanged()
 {
     TRACE
     this->setPrestarted(false);
+    releasePrestart();
 }
