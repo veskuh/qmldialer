@@ -21,10 +21,11 @@ class QMLDialerPrivate
 {
 public:
     QMLDialerPrivate()
-        : currentCall(NULL)
+        : currentCall(NULL), wasPrestarted(false)
     { TRACE }
 
     QMLCallItem *currentCall;
+    bool wasPrestarted;
 };
 
 QMLDialer::QMLDialer(QObject *parent)
@@ -286,6 +287,10 @@ void QMLDialer::onCallsChanged()
     }
     else
     {
+        if( d->wasPrestarted ) {
+            DialerApplication::instance()->setPrestarted(true);
+            d->wasPrestarted = false;
+        }
         d->currentCall = NULL;
     }
 }
@@ -293,8 +298,10 @@ void QMLDialer::onCallsChanged()
 void QMLDialer::onIncomingCall(CallItem *callitem)
 {
     TRACE
-    DialerApplication::instance()->setPrestarted(false);
-
+    d->wasPrestarted = MApplication::isPrestarted();
+    if( d->wasPrestarted ) {
+        DialerApplication::instance()->setPrestarted(false);
+    }
     d->currentCall = new QMLCallItem(callitem, this);
     emit this->incomingCall();
 }
