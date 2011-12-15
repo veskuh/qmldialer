@@ -82,65 +82,51 @@ Item {
     states {
         State {
             name: 'active'
-            PropertyChanges {target: incomingTools; visible: false}
             PropertyChanges {target: activeTools; visible: true}
             PropertyChanges {target: answerButton; visible: false}
             PropertyChanges {target: hangupButton; visible: false}
-            PropertyChanges {target: stateInd; text: qsTr("Active")}
         }
 
         State {
             name: 'held'
-            PropertyChanges {target: incomingTools; visible: false}
             PropertyChanges {target: activeTools; visible: true}
             PropertyChanges {target: answerButton; visible: false}
             PropertyChanges {target: hangupButton; visible: false}
-            PropertyChanges {target: stateInd; text: qsTr("Held")}
         }
 
         State {
             name: 'dialing'
-            PropertyChanges {target: incomingTools; visible: false}
             PropertyChanges {target: activeTools; visible: false}
             PropertyChanges {target: answerButton; visible: false}
             PropertyChanges {target: hangupButton; visible: true}
-            PropertyChanges {target: stateInd; text: qsTr("Dialing...")}
         }
 
         State {
             name: 'alerting'
-            PropertyChanges {target: incomingTools; visible: false}
             PropertyChanges {target: activeTools; visible: false}
             PropertyChanges {target: answerButton; visible: false}
             PropertyChanges {target: hangupButton; visible: true}
-            PropertyChanges {target: stateInd; text: qsTr("Alerting...")}
         }
 
         State {
             name: 'incoming'
-            PropertyChanges {target: incomingTools; visible: true}
             PropertyChanges {target: activeTools; visible: false}
             PropertyChanges {target: answerButton; visible: true}
             PropertyChanges {target: hangupButton; visible: true}
-            PropertyChanges {target: stateInd; text: qsTr("Incoming...")}
         }
 
         State {
             name: 'waiting'
-            PropertyChanges {target: incomingTools; visible: false}
             PropertyChanges {target: activeTools; visible: false}
             PropertyChanges {target: answerButton; visible: false}
             PropertyChanges {target: hangupButton; visible: true}
-            PropertyChanges {target: stateInd; text: qsTr("Waiting...")}
         }
 
         State {
             name: 'disconnected'
-            PropertyChanges {target: incomingTools; visible: false}
             PropertyChanges {target: activeTools; visible: false}
             PropertyChanges {target: answerButton; visible: false}
             PropertyChanges {target: hangupButton; visible: false}
-            PropertyChanges {target: stateInd; text: qsTr("Disconnected")}
         }
     }
 

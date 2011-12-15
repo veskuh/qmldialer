@@ -52,7 +52,7 @@ Page
 
         CallItemView {
             call: newCall
-            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.horizontalCenter: root.horizontalCenter
 
             onStateChanged: {
                 if (state == "disconnected") {
