@@ -31,7 +31,8 @@ public:
         LineIDRole,
         DirectionRole,
         CallStartRole,
-        CallEndRole
+        CallEndRole,
+        NameRole
     };
 
     enum HistoryColumn {
@@ -39,7 +40,8 @@ public:
         COLUMN_DIRECTION,
         COLUMN_CALLSTART,
         COLUMN_CALLEND,
- 
+        COLUMN_NAME,
+
         COLUMN_LAST,
     };
 

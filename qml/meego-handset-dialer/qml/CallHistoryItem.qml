@@ -85,7 +85,7 @@ Item
         {
             id: iContactName
             anchors {left: iAvatar.right; leftMargin: 5}
-            text: contact
+            text: model.Name
             font {pixelSize: 24}
         }
 

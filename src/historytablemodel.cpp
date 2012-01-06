@@ -17,6 +17,7 @@ static QString historyHeaderLabels[] = {
     "Direction",
     "CallStart",
     "CallEnd",
+    "Name"
 };
 
 HistoryTableModel::HistoryTableModel()
@@ -99,6 +100,10 @@ QVariant HistoryTableModel::data(const QModelIndex & index, int role) const
         return QVariant::fromValue(QDateTime::fromString(m_data.at(row).at(COLUMN_CALLEND), Qt::ISODate));
         break;
 
+    case NameRole:
+        return QVariant::fromValue(m_data.at(row).at(COLUMN_NAME));
+        break;
+
     default:
         break;
     }
@@ -167,6 +172,7 @@ bool HistoryTableModel::insertRows(int row, int count,
         newRow << cache->value("Type").toString();   // Call direction type
         newRow << toOfonoString(start);              // Call start time
         newRow << toOfonoString(end);                // Call end time
+        newRow << cache->value("Name").toString();
 
 #ifdef WANT_DEBUG
         qDebug() << QString("[HistoryTableModel] Appending row: %1")
@@ -226,6 +232,7 @@ void HistoryTableModel::appendRows(QStringList keys)
         newRow << cache->value("Type").toString();   // Call direction type
         newRow << toOfonoString(start);              // Call start time
         newRow << toOfonoString(end);                // Call end time
+        newRow << cache->value("Name").toString();
 
 #ifdef WANT_DEBUG
         qDebug() << QString("[HistoryTableModel] Appending row: %1")

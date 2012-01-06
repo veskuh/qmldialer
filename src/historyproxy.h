@@ -48,6 +48,7 @@ protected:
 private:
     HistoryProxy(const HistoryProxy&);
     HistoryProxy& operator= (const HistoryProxy&);
+    QString resolveName(QString &lineId);
 
     QSettings         *m_cache;
 

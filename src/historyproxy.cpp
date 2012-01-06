@@ -75,8 +75,8 @@ void HistoryProxy::sendMissedCallNotification(QList<CallHistoryEvent> missed)
             lineid = stripLineID(e.lineid);
             SeasideSyncModel *contacts = DA_SEASIDEMODEL;
             QModelIndex first = contacts->index(0,Seaside::ColumnPhoneNumbers);
-            QModelIndexList matches = contacts->match(first, Qt::DisplayRole,
-                                                      QVariant(lineid),1);
+            QModelIndexList matches = contacts->match(first, Seaside::SearchRole,
+                                                      QVariant(lineid),-1);
             if (!matches.isEmpty()) {
                 QModelIndex person = matches.at(0); //First match wins
                 SEASIDE_SHORTCUTS
@@ -90,9 +90,7 @@ void HistoryProxy::sendMissedCallNotification(QList<CallHistoryEvent> missed)
                     //% "%1"
                     name = qtTrId("xx_first_name").arg(firstName);
                 else
-                    // Contacts full, sortable name, is "Lastname, Firstname"
-                    //% "%1, %2"
-                    name = qtTrId("xx_full_name").arg(lastName).arg(firstName);
+                    name = firstName+ " " + lastName;
 
                 photo = SEASIDE_FIELD(Avatar, String);
             }
@@ -113,6 +111,34 @@ void HistoryProxy::sendMissedCallNotification(QList<CallHistoryEvent> missed)
         qDebug() << QString("%1: %2").arg(summary).arg(body);
     }
 }
+
+
+QString HistoryProxy::resolveName(QString &lineId) {
+    QString name = "";
+
+    SeasideSyncModel *contacts = DA_SEASIDEMODEL;
+    QModelIndex first = contacts->index(0,Seaside::ColumnPhoneNumbers);
+    QModelIndexList matches = contacts->match(first, Seaside::SearchRole,
+                                              QVariant(stripLineID(lineId)),-1);
+
+    if (!matches.isEmpty()) {
+        QModelIndex person = matches.at(0); //First match wins
+        SEASIDE_SHORTCUTS
+        SEASIDE_SET_MODEL_AND_ROW(person.model(), person.row());
+
+        QString firstName = SEASIDE_FIELD(FirstName, String);
+        QString lastName = SEASIDE_FIELD(LastName, String);
+
+        if (lastName.isEmpty())
+            // Contacts first (common) name
+            //% "%1"
+            name = qtTrId("xx_first_name").arg(firstName);
+        else
+            name = firstName+ " " + lastName;
+    }
+    return name;
+}
+
 
 void HistoryProxy::getHistoryFinished(QDBusPendingCallWatcher *call)
 {
@@ -145,6 +171,7 @@ void HistoryProxy::getHistoryFinished(QDBusPendingCallWatcher *call)
                 m_cache->setValue("Type",   QString::number(e.type));
                 m_cache->setValue("Start",  QString::number(e.start));
                 m_cache->setValue("End",    QString::number(e.end));
+                m_cache->setValue("Name", resolveName(e.lineid));
                 m_cache->endGroup(); // e.id;
 
                 // Send notifications of "Missed" (type == 2) calls
